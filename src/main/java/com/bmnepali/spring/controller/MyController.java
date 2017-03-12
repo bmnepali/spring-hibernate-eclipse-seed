@@ -38,4 +38,15 @@ public class MyController {
 		model.addAttribute("students", students);
 		return "allstudents";
 	}
+
+	/*
+	 * Add a new Student.
+	 */
+	@RequestMapping(value = { "/new" }, method = RequestMethod.GET)
+	public String newStudent(ModelMap model) {
+		Student student = new Student();
+		model.addAttribute("student", student);
+		model.addAttribute("edit", false);
+		return "registration";
+	}
 }
