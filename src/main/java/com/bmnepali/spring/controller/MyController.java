@@ -72,4 +72,15 @@ public class MyController {
 		model.addAttribute("success", "Student " + student.getName() + " registered successfully");
 		return "success";
 	}
+
+	/*
+	 * Provide the existing Student for updating.
+	 */
+	@RequestMapping(value = { "/edit-{code}-student" }, method = RequestMethod.GET)
+	public String editStudent(@PathVariable String code, ModelMap model) {
+		Student student = service.findStudentByCode(code);
+		model.addAttribute("student", student);
+		model.addAttribute("edit", true);
+		return "registration";
+	}
 }
