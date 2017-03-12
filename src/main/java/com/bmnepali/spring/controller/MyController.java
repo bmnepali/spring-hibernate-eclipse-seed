@@ -83,4 +83,27 @@ public class MyController {
 		model.addAttribute("edit", true);
 		return "registration";
 	}
+
+	/*
+	 * Handling POST request for validating the user input and updating Student in database.
+	 */
+	@RequestMapping(value = { "/edit-{code}-student" }, method = RequestMethod.POST)
+	public String updateStudent(@Valid Student student, BindingResult result,
+			ModelMap model, @PathVariable String code) {
+
+		if (result.hasErrors()) {
+			return "registration";
+		}
+
+		if(!service.isStudentCodeUnique(student.getId(), student.getCode())){
+			FieldError codeError =new FieldError("Student","code",messageSource.getMessage("non.unique.code", new String[]{student.getCode()}, Locale.getDefault()));
+		    result.addError(codeError);
+			return "registration";
+		}
+
+		service.updateStudent(student);
+
+		model.addAttribute("success", "Student " + student.getName()	+ " updated successfully");
+		return "success";
+	}
 }
