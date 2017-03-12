@@ -49,4 +49,27 @@ public class MyController {
 		model.addAttribute("edit", false);
 		return "registration";
 	}
+
+	/*
+	 * Handling POST request for validating the user input and saving Student in database.
+	 */
+	@RequestMapping(value = { "/new" }, method = RequestMethod.POST)
+	public String saveStudent(@Valid Student student, BindingResult result,
+			ModelMap model) {
+
+		if (result.hasErrors()) {
+			return "registration";
+		}
+
+		if(!service.isStudentCodeUnique(student.getId(), student.getCode())){
+			FieldError codeError =new FieldError("Student","code",messageSource.getMessage("non.unique.code", new String[]{student.getCode()}, Locale.getDefault()));
+		    result.addError(codeError);
+			return "registration";
+		}
+
+		service.saveStudent(student);
+
+		model.addAttribute("success", "Student " + student.getName() + " registered successfully");
+		return "success";
+	}
 }
