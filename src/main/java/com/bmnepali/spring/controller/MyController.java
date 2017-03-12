@@ -106,4 +106,13 @@ public class MyController {
 		model.addAttribute("success", "Student " + student.getName()	+ " updated successfully");
 		return "success";
 	}
+
+	/*
+	 * Delete an Student by it's CODE value.
+	 */
+	@RequestMapping(value = { "/delete-{code}-student" }, method = RequestMethod.GET)
+	public String deleteStudent(@PathVariable String code) {
+		service.deleteStudentByCode(code);
+		return "redirect:/list";
+	}
 }
