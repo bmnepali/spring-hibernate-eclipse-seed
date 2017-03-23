@@ -12,3 +12,17 @@ Convert the Created n Project to Eclipse project:
 ```
 mvn eclipse:eclipse -Dwtpversion=2.0
 ```
+#### Create Database Table:
+```
+--
+-- Table structure for table `STUDENT`
+--
+
+CREATE TABLE `STUDENT` (
+  `id` int(11) NOT NULL,
+  `name` text NOT NULL,
+  `entering_date` date NOT NULL,
+  `nationality` text NOT NULL,
+  `code` varchar(30) NOT NULL
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
+```
