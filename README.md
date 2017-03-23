@@ -15,14 +15,32 @@ mvn eclipse:eclipse -Dwtpversion=2.0
 #### Create Database Table:
 ```
 --
--- Table structure for table `STUDENT`
+-- Table structure for table `student`
 --
 
-CREATE TABLE `STUDENT` (
+CREATE TABLE `student` (
   `id` int(11) NOT NULL,
   `name` text NOT NULL,
   `entering_date` date NOT NULL,
   `nationality` text NOT NULL,
   `code` varchar(30) NOT NULL
 ) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
+
+--
+-- Indexes for table `student`
+--
+ALTER TABLE `student`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `code` (`code`);
+
+--
+-- AUTO_INCREMENT for dumped tables
+--
+
+--
+-- AUTO_INCREMENT for table `student`
+--
+ALTER TABLE `student`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=5;
+  
 ```
